@@ -1,0 +1,28 @@
+#1
+<new>
+namespace std
+{
+	typedef void (*new_handler)();
+	std::new_handler set_new_handler (std::new_handler new_p);
+}
+std::new_handler set_new_handler (std::new_handler new_p);
+这里typedef了一个 函数指针指向一个函数，返回值为void,形参也为void。set_new_handler 就是将new_handler指向具体的函数，然后在这个函数里面处理out of memory 的异常。如果这个new_handler 为空，则这个函数没有执行，就会抛出out of memory 异常。
+
+#2 
+new operator/delete operator就是new和delete操作符，而operator new/operator delete是函数。
+
+new operator
+（1）调用operator new分配足够的空间，并调用相关对象的构造函数
+（2）不可以被重载
+
+operator new
+（1）只分配所要求的空间，不调用相关对象的构造函数。当无法满足所要求分配的空间时，则
+        ->如果有new_handler，则调用new_handler，否则
+        ->如果没要求不抛出异常（以nothrow参数表达），则执行bad_alloc异常，否则
+        ->返回0
+（2）可以被重载
+（3）重载时，返回类型必须声明为void*
+（4）重载时，第一个参数类型必须为表达要求分配空间的大小（字节），类型为size_t
+（5）重载时，可以带其它参数
+
+delete 与 delete operator类似
