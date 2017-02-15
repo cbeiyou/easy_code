@@ -25,4 +25,4 @@ operator new
 （4）重载时，第一个参数类型必须为表达要求分配空间的大小（字节），类型为size_t
 （5）重载时，可以带其它参数
 
-delete 与 delete operator类似
+delete 与 delete operator类似 
