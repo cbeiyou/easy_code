@@ -11,11 +11,11 @@ std::new_handler set_new_handler (std::new_handler new_p);
 #2 
 new operator/delete operator就是new和delete操作符，而operator new/operator delete是函数。
 
-new operator
+**new operator**
 （1）调用operator new分配足够的空间，并调用相关对象的构造函数
 （2）不可以被重载
 
-operator new
+**operator new**
 （1）只分配所要求的空间，不调用相关对象的构造函数。当无法满足所要求分配的空间时，则
         ->如果有new_handler，则调用new_handler，否则
         ->如果没要求不抛出异常（以nothrow参数表达），则执行bad_alloc异常，否则
